@@ -5,11 +5,14 @@ public class it22019 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         choice_1 article = new choice_1(); //object to choice_1
+        choice_2 article2 = new choice_2();
         int counter = 0;
 
         int answer; //choice of table of content (1-6)
         do { //prints the choices
             System.out.print("""
+                    
+                    
                     1. Insert new article
                     2. Search article and import evaluator
                     3. Import article rating
@@ -30,8 +33,11 @@ public class it22019 {
                     article.authorChoice1();
                     break;
                 case 2:
+                    article2.showArticle();
+                    article2.addEvaluator();
                     break;
                 case 3:
+
                     break;
                 case 4:
                     break;

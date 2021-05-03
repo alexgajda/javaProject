@@ -5,14 +5,14 @@ import java.util.Scanner; //for the Scanner input
 public class choice_1 {
     /**************************ARTICLE*******************************/
     //article variables
-    private ArrayList<String> articleTitle = new ArrayList<String>();
+    private static ArrayList<String> articleTitle = new ArrayList<String>();
     private ArrayList<String> articleKey = new ArrayList<String>();
-    private ArrayList<String> articleType1 = new ArrayList<String>(); //full paper or paper in progress
-    private ArrayList<String> articleType2 = new ArrayList<String>(); //regular or case-study
+    private static ArrayList<String> articleType1 = new ArrayList<String>(); //full paper or paper in progress
+    private static ArrayList<String> articleType2 = new ArrayList<String>(); //regular or case-study
     private ArrayList<String> articleEnvironment = new ArrayList<String>();
     private ArrayList<String> articleEnvironmentName = new ArrayList<String>();
     private ArrayList<Integer> articlePages = new ArrayList<Integer>();
-    private ArrayList<Integer> articleCode = new ArrayList<Integer>();
+    private static ArrayList<Integer> articleCode = new ArrayList<Integer>();
 
     Scanner input = new Scanner(System.in); //Creates scanner for all methods
     public void articleChoice1(){
@@ -171,12 +171,12 @@ public class choice_1 {
     *       of Authors and co-Authors
      */
     //Author variables
-    private ArrayList<String> authorMail= new ArrayList<String>();
-    private ArrayList<String> authorName = new ArrayList<String>();
+    private static ArrayList<String> authorMail= new ArrayList<String>();
+    private static ArrayList<String> authorName = new ArrayList<String>();
     private ArrayList<String> authorTitle = new ArrayList<String>();
     private ArrayList<String> authorOrganism = new ArrayList<String>();
     //Co-Author variables
-    private ArrayList<String> coauthorMail= new ArrayList<String>();
+    private static ArrayList<String> coauthorMail= new ArrayList<String>();
     private ArrayList<String> coauthorName = new ArrayList<String>();
     private ArrayList<String> coauthorTitle = new ArrayList<String>();
     private ArrayList<String> coauthorOrganism = new ArrayList<String>();
@@ -373,9 +373,37 @@ public class choice_1 {
     }
 
     //checks if email address given is valid or not
-    static boolean isValidEmailAddress(String email) {
+    public static boolean isValidEmailAddress(String email) {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
 
+    //get the ArrayStrings that helps us with the other choices
+    public ArrayList<String> getAuthorName() {
+        return authorName;
+    }
+
+    public ArrayList<String> getArticleTitle() {
+        return articleTitle;
+    }
+
+    public ArrayList<Integer> getArticleCode() {
+        return articleCode;
+    }
+
+    public ArrayList<String> getArticleType1() {
+        return articleType1;
+    }
+
+    public ArrayList<String> getArticleType2() {
+        return articleType2;
+    }
+
+    public ArrayList<String> getAuthorMail() {
+        return authorMail;
+    }
+
+    public ArrayList<String> getCoauthorMail() {
+        return coauthorMail;
+    }
 }
