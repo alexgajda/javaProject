@@ -7,6 +7,7 @@ public class it22019 {
         choice_1 article = new choice_1(); //object to choice1
         choice_2 article2 = new choice_2(); //object to choice2
         choice_3 article3 = new choice_3(); //object to choice3
+        choice_5 article5 = new choice_5();
         int counter = 0;
 
         int answer; //choice of table of content (1-6)
@@ -44,7 +45,7 @@ public class it22019 {
 
                     break;
                 case 5:
-
+                    article5.showAllArticles();
                     break;
                 default:
                     System.out.println("Byeeee, and don't come back! :)");
