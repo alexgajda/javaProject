@@ -6,7 +6,7 @@ public class choice_1 {
     /**************************ARTICLE*******************************/
     //article variables
     private static ArrayList<String> articleTitle = new ArrayList<String>();
-    private ArrayList<String> articleKey = new ArrayList<String>();
+    private static ArrayList<String> articleKey = new ArrayList<String>();
     private static ArrayList<String> articleType1 = new ArrayList<String>(); //full paper or paper in progress
     private static ArrayList<String> articleType2 = new ArrayList<String>(); //regular or case-study
     private ArrayList<String> articleEnvironment = new ArrayList<String>();
@@ -128,7 +128,7 @@ public class choice_1 {
             articleCode.add(rand.nextInt(upperRandom));
         } else {
             do {
-                randTemp = rand.nextInt(upperRandom);
+                randTemp = rand.nextInt(upperRandom) + 1;
                 for (int i = 0; i < articleCode.size(); i++) { //checks if code is unique
                     isUnique = true; //initializes true after the false statement
                     if (randTemp == articleCode.get(i)) {
@@ -331,6 +331,8 @@ public class choice_1 {
             System.out.printf("""
                               
                               
+                            Article's code: %s  
+                              
                             Author's Email: %s
                             Author's name and surname: %s 
                             Author's title: %s
@@ -343,6 +345,7 @@ public class choice_1 {
                               
                               
                             """,
+                    articleCode.get(articleCode.size() - 1),
                     authorMail.get(authorMail.size() - 1),
                     authorName.get(authorName.size() - 1),
                     authorTitle.get(authorTitle.size() - 1),
@@ -356,6 +359,8 @@ public class choice_1 {
             System.out.printf("""
                               
                               
+                              Article's code: %s
+                              
                               Author's Email: %s
                               Author's name and surname: %s
                               Author's title: %s
@@ -365,6 +370,7 @@ public class choice_1 {
                               
                               
                               """,
+                    articleCode.get(articleCode.size() - 1),
                     authorMail.get(authorMail.size() - 1),
                     authorName.get(authorName.size() - 1),
                     authorTitle.get(authorTitle.size() - 1),
@@ -405,5 +411,9 @@ public class choice_1 {
 
     public ArrayList<String> getCoauthorMail() {
         return coauthorMail;
+    }
+
+    public static ArrayList<String> getArticleKey() {
+        return articleKey;
     }
 }

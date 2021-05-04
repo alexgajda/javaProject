@@ -17,20 +17,18 @@ public class choice_2 {
     private Scanner input = new Scanner(System.in); //scanner input
     int isValid;    //variable that indicates if article's code is real or not
 
-    public void showArticle(){
+    public int showChoice2(){
         System.out.print("Give me the article's code: ");
         do {
             int tempCode = input.nextInt();
-            if (tempCode == 0){ //if the user wants to exit and go back to table of contents
-                return;
-            }
             isValid = findCode(tempCode);
             if (isValid == -1){ //if the code is invalid and not in database
-                System.out.print("Couldn't find code, Try again (press 0 to exit): ");
+                System.out.print("Couldn't find code, Try again: ");
             }
         }while (isValid == -1); //leaves while it finds the correct code that is in database
-        input.nextLine(); //after next int not to be confused with \n
+        input.nextLine(); //after next int, not to be confused with \n
         printAll(isValid); //prints code name type and title
+        return 1;
     }
 
     public int findCode(int tempCode){
@@ -62,7 +60,7 @@ public class choice_2 {
 
     /************************EVALUATOR***********************/
     //THESE VARIABLES STORE THE EVALUATOR'S INFORMATION
-    private ArrayList<String> evaluatorEmail = new ArrayList<String>();
+    private static ArrayList<String> evaluatorEmail = new ArrayList<String>();
     private ArrayList<String> evaluatorName = new ArrayList<String>();
     private ArrayList<String> evaluatorTitle = new ArrayList<String>();
     private ArrayList<String> evaluatorOrganism = new ArrayList<String>();
@@ -84,7 +82,7 @@ public class choice_2 {
 
         find1 = findAuthors(mailTemp);
         if (find1 == false){ //if the evaluator's are the authors
-            System.out.print("Authors can't be Evaluators of their own article!");
+            System.out.print("Authors can't be Evaluators of their own article!\n");
             return; //returns to main
         }else{ //if the evaluators are not the authors
             find2 = findEvaluator(mailTemp);
@@ -110,7 +108,7 @@ public class choice_2 {
                 } else {
                     evaluatorTitle.add(titleTemp);
                 }
-                System.out.print("Evaluator has successfully been added! ");
+                System.out.print("Evaluator has successfully been added!\n");
             }else{ //if the evaluator is already in database, no new inputs
                 System.out.println("Evaluator has been found in database!\n");
                 evaluatorEmail.add(evaluatorEmail.get(find2));
@@ -139,4 +137,8 @@ public class choice_2 {
         return true;
     }
 
+
+    public ArrayList<String> getEvaluatorEmail() {
+        return evaluatorEmail;
+    }
 }
