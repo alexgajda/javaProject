@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 public class choice_5 {
-    //object to choice 1
-    choice_1 article = new choice_1();
+    choice_1 article = new choice_1();     //object to choice 1
     //VARIABLES THAT STORE THE TYPE OF ARTICLE DATA FROM DATABASE FROM CHOICE 1
     private ArrayList<String> sumType1Articles = article.getArticleType1();
     private ArrayList<String> sumType2Articles = article.getArticleType2();

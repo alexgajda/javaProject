@@ -36,6 +36,10 @@ public class choice_1 {
         System.out.print("Enter article's pages: ");
         int articlePagesTemp;
         do { //checks the pages length
+            while (!input.hasNextInt()) {
+                System.err.println("That's not a number!");
+                input.next();
+            }
             articlePagesTemp = input.nextInt();
             if (articlePagesTemp < 0 || articlePagesTemp > 12){
                 System.out.print("Article must have 1-12 pages, Try again: ");
@@ -54,6 +58,10 @@ public class choice_1 {
         int choice;
         System.out.printf("Type of your %s's article type (1: Regular \\ 2: Case-Study): ",articleType1.get(articleType1.size()-1));
         do {    //checks if choice is 1 or 2
+            while (!input.hasNextInt()) {
+                System.err.println("That's not a number!");
+                input.next();
+            }
             choice = input.nextInt();
             if (choice != 1 && choice != 2){
                 System.out.print("1: Regular \\ 2: Case-Study, Try again: ");
@@ -71,6 +79,10 @@ public class choice_1 {
         if (choice == 2){ //if it is case study
             System.out.print("Enter your application environment type (1: Public \\ 2: Private): ");
             do{ //checks if choice is 1 or 2
+                while (!input.hasNextInt()) {
+                    System.err.println("That's not a number!");
+                    input.next();
+                }
                 choice2 = input.nextInt();
                 if (choice2 != 1 && choice2 != 2){
                     System.out.print("1: Public \\ 2: Private, Try again: ");
@@ -177,7 +189,7 @@ public class choice_1 {
     private ArrayList<String> authorOrganism = new ArrayList<String>();
     //Co-Author variables
     private static ArrayList<String> coauthorMail= new ArrayList<String>();
-    private ArrayList<String> coauthorName = new ArrayList<String>();
+    private static ArrayList<String> coauthorName = new ArrayList<String>();
     private ArrayList<String> coauthorTitle = new ArrayList<String>();
     private ArrayList<String> coauthorOrganism = new ArrayList<String>();
 
@@ -415,5 +427,9 @@ public class choice_1 {
 
     public static ArrayList<String> getArticleKey() {
         return articleKey;
+    }
+
+    public ArrayList<String> getCoauthorName() {
+        return coauthorName;
     }
 }

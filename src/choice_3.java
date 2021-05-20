@@ -18,16 +18,7 @@ public class choice_3 {
     int isValid;
 
     public void ShowChoice3() {
-        System.out.print("Give article's code: ");
-        do {
-            int tempCode = input.nextInt();
-            isValid = article2.findCode(tempCode);
-            if (isValid == -1) { //if the code is invalid and not in database
-                System.out.print("Couldn't find code, Try again: ");
-            }
-        } while (isValid == -1); //leaves while it finds the correct code that is in database
-        input.nextLine(); //after next int not to be confused with \n
-
+        isValid = article2.scanTheCode(); //gets the code from from method in choice 2
         printAll(isValid); //prints code name type and title
     }
 
@@ -74,6 +65,7 @@ public class choice_3 {
         }
 
     }
+
     public int findEvaluator(String mailTemp){
         //return if there is an evaluator email in database
         int i;

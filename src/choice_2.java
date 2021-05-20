@@ -14,21 +14,30 @@ public class choice_2 {
     private ArrayList<String> mailAuthor = article.getAuthorMail();
     private ArrayList<String> mailCoAuthor = article.getCoauthorMail();
 
-    private Scanner input = new Scanner(System.in); //scanner input
+    Scanner input = new Scanner(System.in); //scanner input
     int isValid;    //variable that indicates if article's code is real or not
 
-    public int showChoice2(){
+    public void showChoice2(){
+        isValid = scanTheCode();
+        printAll(isValid); //prints code name type and title
+    }
+
+    public int scanTheCode(){
+        int isValid; //variable that stores the code and returns if it is in database
         System.out.print("Give me the article's code: ");
         do {
+            while (!input.hasNextInt()) {
+                System.err.println("That's not a number!");
+                input.next();
+            }
             int tempCode = input.nextInt();
+            input.nextLine(); //after next int, not to be confused with \n
             isValid = findCode(tempCode);
             if (isValid == -1){ //if the code is invalid and not in database
                 System.out.print("Couldn't find code, Try again: ");
             }
-        }while (isValid == -1); //leaves while it finds the correct code that is in database
-        input.nextLine(); //after next int, not to be confused with \n
-        printAll(isValid); //prints code name type and title
-        return 1;
+        }while (isValid == -1); //leaves while it finds the correct code that is in database\
+        return isValid;
     }
 
     public int findCode(int tempCode){

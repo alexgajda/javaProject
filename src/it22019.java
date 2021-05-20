@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class it22019 {
@@ -7,10 +8,10 @@ public class it22019 {
         choice_1 article = new choice_1(); //object to choice1
         choice_2 article2 = new choice_2(); //object to choice2
         choice_3 article3 = new choice_3(); //object to choice3
-        choice_5 article5 = new choice_5();
-        int counter = 0;
+        choice_4 article4 = new choice_4(); //object to choice4
+        choice_5 article5 = new choice_5(); //object to choice5
 
-        int answer; //choice of table of content (1-6)
+        int answer = 0; //choice of table of content (1-6)
         do { //prints the choices
             System.out.print("""
                     
@@ -20,13 +21,18 @@ public class it22019 {
                     4. Display article's ratings
                     5. Display reports
                     6. Exit
-                    Enter your choice:    """);
+                    Enter your choice:\t""");
             do {    //checks the answer (1-6)
+                while (!input.hasNextInt()) { //checks if it is a number
+                    System.err.println("That's not a number!");
+                    input.next();
+                }
                 answer = input.nextInt();
-                if (answer < 1 || answer > 6){
+                if (answer < 1 || answer > 6) {
                     System.out.print("Input must be 1-6, Try again: ");
                 }
             }while (answer < 1 || answer > 6);
+            input.nextLine();
 
             switch (answer){ //executes the choice
                 case 1:
@@ -42,7 +48,7 @@ public class it22019 {
                     article3.addRating();  //adds the ratings of the elevator
                     break;
                 case 4:
-
+                    article4.printRatings();
                     break;
                 case 5:
                     article5.showAllArticles();
