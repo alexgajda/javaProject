@@ -13,30 +13,46 @@ public class choice_2 {
     private ArrayList<String> type2Choice2 = article.getArticleType2();
     private ArrayList<String> mailAuthor = article.getAuthorMail();
     private ArrayList<String> mailCoAuthor = article.getCoauthorMail();
+    private static ArrayList<Integer> hasEvaluator = new ArrayList<Integer>();
 
     Scanner input = new Scanner(System.in); //scanner input
     int isValid;    //variable that indicates if article's code is real or not
 
-    public void showChoice2(){
+    public int showChoice2(){
         isValid = scanTheCode();
+        if (isValid == -1){
+            System.out.println("Exiting...");
+            return -1;
+        }
+        for (int i = 0; i < hasEvaluator.size(); i++){
+            if (isValid == hasEvaluator.get(i)){
+                System.out.println("The article has already an evaluator in database!");
+                return -1;
+            }
+        }
         printAll(isValid); //prints code name type and title
+        return isValid;
     }
 
     public int scanTheCode(){
         int isValid; //variable that stores the code and returns if it is in database
-        System.out.print("Give me the article's code: ");
+        int tempCode;
+        System.out.print("Give me the article's code (Exit -1): ");
         do {
             while (!input.hasNextInt()) {
-                System.err.println("That's not a number!");
+                System.err.println("That's not a number! (Exit: -1)");
                 input.next();
             }
-            int tempCode = input.nextInt();
+            tempCode = input.nextInt();
             input.nextLine(); //after next int, not to be confused with \n
+            if (tempCode == -1){
+                return -1;
+            }
             isValid = findCode(tempCode);
             if (isValid == -1){ //if the code is invalid and not in database
                 System.out.print("Couldn't find code, Try again: ");
             }
-        }while (isValid == -1); //leaves while it finds the correct code that is in database\
+        }while (isValid == -1 && tempCode != -1); //leaves while it finds the correct code that is in database
         return isValid;
     }
 
@@ -74,7 +90,7 @@ public class choice_2 {
     private ArrayList<String> evaluatorTitle = new ArrayList<String>();
     private ArrayList<String> evaluatorOrganism = new ArrayList<String>();
 
-    public void addEvaluator(){
+    public void addEvaluator(int isValid2){
         int find2; //variable that finds if the evaluator is already in database
         boolean find1; //variable that finds if the author is the evaluator of its own article
         String mailTemp;
@@ -94,6 +110,7 @@ public class choice_2 {
             System.out.print("Authors can't be Evaluators of their own article!\n");
             return; //returns to main
         }else{ //if the evaluators are not the authors
+            hasEvaluator.add(isValid2);
             find2 = findEvaluator(mailTemp);
             if (find2 == -1){ //if the evaluator is not in database
                 //adds email
@@ -146,8 +163,11 @@ public class choice_2 {
         return true;
     }
 
-
     public ArrayList<String> getEvaluatorEmail() {
         return evaluatorEmail;
+    }
+
+    public ArrayList<Integer> getHasEvaluator() {
+        return hasEvaluator;
     }
 }

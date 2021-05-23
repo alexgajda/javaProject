@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class it22019 {
@@ -11,7 +10,7 @@ public class it22019 {
         choice_4 article4 = new choice_4(); //object to choice4
         choice_5 article5 = new choice_5(); //object to choice5
 
-        int answer = 0; //choice of table of content (1-6)
+        int answer; //choice of table of content (1-6)
         do { //prints the choices
             System.out.print("""
                     
@@ -34,28 +33,27 @@ public class it22019 {
             }while (answer < 1 || answer > 6);
             input.nextLine();
 
-            switch (answer){ //executes the choice
-                case 1:
+            int hasEvaluatorOrExit;
+            switch (answer) { //executes the choice
+                case 1 -> {
                     article.articleChoice1(); //provides all the characteristics of the article
                     article.authorChoice1();  //provides all the characteristics of the Author/Co-Author
-                    break;
-                case 2:
-                    article2.showChoice2(); //Shows the elements of the exercise
-                    article2.addEvaluator(); //adds the evaluator on the system
-                    break;
-                case 3:
-                    article3.ShowChoice3(); //Shows the elements of the exercise
-                    article3.addRating();  //adds the ratings of the elevator
-                    break;
-                case 4:
-                    article4.printRatings();
-                    break;
-                case 5:
-                    article5.showAllArticles();
-                    break;
-                default:
-                    System.out.println("Byeeee, and don't come back! :)");
-                    break;
+                }
+                case 2 -> {
+                    hasEvaluatorOrExit = article2.showChoice2(); //Shows the elements of the exercise
+                    if (hasEvaluatorOrExit != -1) { //-1 if there s no evaluator in the article's database, or the user didnt press exit
+                        article2.addEvaluator(hasEvaluatorOrExit); //if there is no evaluator (or exit), it adds the evaluator on the system
+                    }
+                }
+                case 3 -> {
+                    hasEvaluatorOrExit = article3.ShowChoice3(); //Shows the elements of the exercise
+                    if (hasEvaluatorOrExit != -1){ //if the input is not exit (-1)
+                        article3.addRating(hasEvaluatorOrExit);  //adds the ratings of the elevator
+                    }
+                }
+                case 4 -> article4.printRatings();
+                case 5 -> article5.showAllArticles(); //prints all the types of articles
+                default -> System.out.println("Byeeee, and don't come back! :)");
             }
         }while (answer != 6);
     }
