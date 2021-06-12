@@ -7,7 +7,6 @@ public class choice_2 {
     private ArrayList<Integer> codesChoice2 = article.getArticleCode();
 
     private static ArrayList<Integer> hasEvaluator = new ArrayList<Integer>();
-    private static ArrayList<String> hasCode = new ArrayList<String>();
 
     Scanner input = new Scanner(System.in); //scanner input
     int isValid;    //variable that indicates if article's code is real or not
