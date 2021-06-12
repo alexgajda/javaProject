@@ -4,16 +4,10 @@ import java.util.Scanner;
 public class choice_2 {
     choice_1 article = new choice_1(); //object to choice 1
 
-    //VARIABLES THAT STORE THE DATA FROM CHOICE 1 TO BE USED IN CHOICE 2
-    //those variables help to find the characteristics of the articles and authors that were stored in choice 1
     private ArrayList<Integer> codesChoice2 = article.getArticleCode();
-    private ArrayList<String> nameChoice2 = article.getAuthorName();
-    private ArrayList<String> titleChoice2 = article.getArticleTitle();
-    private ArrayList<String> type1Choice2 = article.getArticleType1();
-    private ArrayList<String> type2Choice2 = article.getArticleType2();
-    private ArrayList<String> mailAuthor = article.getAuthorMail();
-    private ArrayList<String> mailCoAuthor = article.getCoauthorMail();
+
     private static ArrayList<Integer> hasEvaluator = new ArrayList<Integer>();
+    private static ArrayList<String> hasCode = new ArrayList<String>();
 
     Scanner input = new Scanner(System.in); //scanner input
     int isValid;    //variable that indicates if article's code is real or not
@@ -77,9 +71,9 @@ public class choice_2 {
                 %s's type: %s
                 
                 
-                """,codesChoice2.get(isValid),titleChoice2.get(isValid),
-                nameChoice2.get(isValid),type1Choice2.get(isValid),
-                type1Choice2.get(isValid),type2Choice2.get(isValid)
+                """,codesChoice2.get(isValid),article.getArticleTitle(isValid),
+                article.getAuthorName(isValid),article.getArticleType1(isValid),
+                article.getArticleType1(isValid),article.getArticleType2(isValid)
         );
     }
 
@@ -111,6 +105,7 @@ public class choice_2 {
             return; //returns to main
         }else{ //if the evaluators are not the authors
             hasEvaluator.add(isValid2);
+            //hasCode.add()
             find2 = findEvaluator(mailTemp);
             if (find2 == -1){ //if the evaluator is not in database
                 //adds email
@@ -157,17 +152,25 @@ public class choice_2 {
 
     public boolean findAuthors(String mailTemp){
         //checks if the authors are the article's evaluators (false = yes \\ true = no)
-        if (mailTemp.equals(mailAuthor.get(isValid)) || mailTemp.equals(mailCoAuthor.get(isValid))){
+        if (mailTemp.equals(article.getAuthorMail(isValid)) || mailTemp.equals(article.getCoauthorMail(isValid))){
             return false;
         }
         return true;
     }
 
-    public ArrayList<String> getEvaluatorEmail() {
-        return evaluatorEmail;
+    public String getEvaluatorEmail(int i) {
+        return evaluatorEmail.get(i);
     }
 
-    public ArrayList<Integer> getHasEvaluator() {
-        return hasEvaluator;
+    public int getEvaluatorEmailSize(){
+        return evaluatorEmail.size();
+    }
+
+    public int getHasEvaluator(int i) {
+        return hasEvaluator.get(i);
+    }
+
+    public int getHasEvaluatorSize(){
+        return hasEvaluator.size();
     }
 }

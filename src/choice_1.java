@@ -264,7 +264,7 @@ public class choice_1 {
                 mailTemp = input.nextLine();
                 isValid = isValidEmailAddress(mailTemp);
                 if (!isValid){
-                    System.out.println("Wrong email address, Try again: ");
+                    System.err.println("Wrong email address, Try again: ");
                 }
             }while(!isValid); //same as before (see above)
             find1 = findAuthor(mailTemp); //returns -1 if the mail isn't in author database
@@ -397,39 +397,47 @@ public class choice_1 {
     }
 
     //get the ArrayStrings that helps us with the other choices
-    public ArrayList<String> getAuthorName() {
-        return authorName;
+    public String getAuthorName(int i) {
+        return authorName.get(i);
     }
 
-    public ArrayList<String> getArticleTitle() {
-        return articleTitle;
+    public String getArticleTitle(int i) {
+        return articleTitle.get(i);
     }
 
     public ArrayList<Integer> getArticleCode() {
         return articleCode;
     }
 
-    public ArrayList<String> getArticleType1() {
-        return articleType1;
+    public String getArticleType1(int i) {
+        return articleType1.get(i);
     }
 
-    public ArrayList<String> getArticleType2() {
-        return articleType2;
+    public int getArticleType1Size(){
+        return articleType1.size();
     }
 
-    public ArrayList<String> getAuthorMail() {
-        return authorMail;
+    public String getArticleType2(int i) {
+        return articleType2.get(i);
     }
 
-    public ArrayList<String> getCoauthorMail() {
-        return coauthorMail;
+    public int getArticleType2Size(){
+        return articleType2.size();
     }
 
-    public static ArrayList<String> getArticleKey() {
-        return articleKey;
+    public String getAuthorMail(int i) {
+        return authorMail.get(i);
     }
 
-    public ArrayList<String> getCoauthorName() {
-        return coauthorName;
+    public String getCoauthorMail(int i) {
+        return coauthorMail.get(i);
+    }
+
+    public String getArticleKey(int i) {
+        return articleKey.get(i);
+    }
+
+    public String getCoauthorName(int i) {
+        return coauthorName.get(i);
     }
 }

@@ -1,22 +1,15 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class choice_3 {
+    int isValid;
     choice_1 article = new choice_1(); //object to choice1
     choice_2 article2 = new choice_2(); //object to choice2
 
     //GETS THE CHARACTERISTICS OF THE ARTICLE STORED IN CHOICE 1
     private ArrayList<Integer> codesChoice3 = article.getArticleCode();
-    private ArrayList<String> titleChoice3 = article.getArticleTitle();
-    private ArrayList<String> keysChoice3 = article.getArticleKey();
-    private ArrayList<String> type1Choice3 = article.getArticleType1();
-    private ArrayList<String> type2Choice3 = article.getArticleType2();
-    private ArrayList<Integer> hasEvaluatorChoice3 = article2.getHasEvaluator();
 
     Scanner input = new Scanner(System.in);
-    int isValid;
 
     public int ShowChoice3() {
         isValid = article2.scanTheCode(); //gets the code from from method in choice 2
@@ -28,8 +21,6 @@ public class choice_3 {
         return codesChoice3.get(isValid);
     }
 
-    //GETS THE EMAILS FROM THE EVALUATORS STORED IN CHOICE 2
-    private ArrayList<String> evaluatorMailChoice2 = article2.getEvaluatorEmail();
     //NEW VARIABLES THAT STORE THE RATINGS OF THE EVALUATORS
     private static ArrayList<Integer> ratingContribution = new ArrayList<Integer>();
     private static ArrayList<Integer> ratingResult = new ArrayList<Integer>();
@@ -44,7 +35,7 @@ public class choice_3 {
                 return;
             }
         }
-        if (evaluatorMailChoice2.size() != 0) { //if there is at least 1 evaluator in database
+        if (article2.getEvaluatorEmailSize() != 0) { //if there is at least 1 evaluator in database
             String mailTemp;
             boolean isValid2;
             System.out.print("Enter the evaluator's email: ");
@@ -57,7 +48,12 @@ public class choice_3 {
                 }
             } while (!isValid2);
 
-            if (mailTemp.equals(evaluatorMailChoice2.get(findEvaluator(mailTemp)))) {   //if the evaluator's email is in database
+            int temp = findEvaluator(mailTemp);
+            if (temp == -1){
+                System.out.println("Evaluator not found!");
+                return;
+            }
+            if (mailTemp.equals(article2.getEvaluatorEmail(temp))) {   //if the evaluator's email is in database
                 hasRating.add(isRated);
                 //Gets all the ratings
                 System.out.print("Congratulations, you are a evaluator! Your ratings must be between (1-10)." +
@@ -81,19 +77,26 @@ public class choice_3 {
 
     public int findEvaluator(String mailTemp){
         //return if there is an evaluator email in database
-        int i;
-        for ( i = 0; i < codesChoice3.size(); i++){
-            if (mailTemp.equals(evaluatorMailChoice2.get(i))){
-                return i;
+        for (int i = 0; i < article2.getHasEvaluatorSize(); i++){
+            if (article2.getHasEvaluator(i) == isValid) {
+                if (mailTemp.equals(article2.getEvaluatorEmail(i))) {
+                    return i;
+                }else {
+                    return -1;
+                }
             }
         }
-        return i-1;
+        return -1;
     }
 
     public int returnRating(){
         //CHECKS IF THE RATING IS 1-10 AND RETURN IT
         int rating;
         do {
+            while (!input.hasNextInt()) { //checks if it is a number
+                System.err.println("That's not a number!");
+                input.next();
+            }
             rating = input.nextInt();
             if (rating < 1 || rating > 10){
                 System.out.print("Rating must be in the range of 1-10, Try again: ");
@@ -114,9 +117,9 @@ public class choice_3 {
                 %s's type: %s
                 
                 
-                """,titleChoice3.get(isValid),codesChoice3.get(isValid),
-                keysChoice3.get(isValid),type1Choice3.get(isValid),
-                type1Choice3.get(isValid),type2Choice3.get(isValid));
+                """,article.getArticleTitle(isValid),codesChoice3.get(isValid),
+                article.getArticleKey(isValid),article.getArticleType1(isValid),
+                article.getArticleType1(isValid),article.getArticleType2(isValid));
     }
 
     public void printRatings(int isValid){
@@ -132,31 +135,35 @@ public class choice_3 {
                 Innovation: %s
                 
                 
-                """,titleChoice3.get(isValid),
+                """,article.getArticleTitle(isValid),
                 ratingContribution.get(ratingContribution.size() - 1),
                 ratingResult.get(ratingResult.size() - 1),
                 ratingMethodology.get(ratingMethodology.size() - 1),
                 ratingInnovation.get(ratingInnovation.size() - 1));
     }
 
-    public static ArrayList<Integer> getHasRating() {
-        return hasRating;
+    public int getHasRating(int i) {
+        return hasRating.get(i);
     }
 
-    public static ArrayList<Integer> getRatingResult() {
-        return ratingResult;
+    public int getHasRatingSize(){
+        return hasRating.size();
     }
 
-    public static ArrayList<Integer> getRatingInnovation() {
-        return ratingInnovation;
+    public int getRatingResult(int i) {
+        return ratingResult.get(i);
     }
 
-    public static ArrayList<Integer> getRatingMethodology() {
-        return ratingMethodology;
+    public int getRatingInnovation(int i) {
+        return ratingInnovation.get(i);
     }
 
-    public static ArrayList<Integer> getRatingContribution() {
-        return ratingContribution;
+    public int getRatingMethodology(int i) {
+        return ratingMethodology.get(i);
+    }
+
+    public int getRatingContribution(int i) {
+        return ratingContribution.get(i);
     }
 
 }

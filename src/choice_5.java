@@ -1,10 +1,5 @@
-import java.util.ArrayList;
-
 public class choice_5 {
     choice_1 article = new choice_1();     //object to choice 1
-    //VARIABLES THAT STORE THE TYPE OF ARTICLE DATA FROM DATABASE FROM CHOICE 1
-    private ArrayList<String> sumType1Articles = article.getArticleType1();
-    private ArrayList<String> sumType2Articles = article.getArticleType2();
 
     public void showAllArticles(){
         //PRINT THE SUM OF ALL TYPES
@@ -18,7 +13,7 @@ public class choice_5 {
                 Case Study Articles: %s
                 
                 
-                """, sumType1Articles.size(),
+                """, article.getArticleType1Size(),
                 //CALCULATES THE TOTAL TYPES IN EACH METHOD, WHICH RETURNS THE SUM
                 fullPaper(),
                 PaperInProgress(),
@@ -29,8 +24,8 @@ public class choice_5 {
     //EACH METHOD RETURNS THE SUM TYPE OF ALL THE ARTICLES
     public int fullPaper(){
         int counter = 0;
-        for (int i = 0; i < sumType1Articles.size(); i++){
-            if (sumType1Articles.get(i).equals("Full paper")){
+        for (int i = 0; i < article.getArticleType1Size(); i++){
+            if (article.getArticleType1(i).equals("Full paper")){
                 counter++;
             }
         }
@@ -39,8 +34,8 @@ public class choice_5 {
 
     public int PaperInProgress(){
         int counter = 0;
-        for (int i = 0; i < sumType1Articles.size(); i++){
-            if (sumType1Articles.get(i).equals("Paper in progress")){
+        for (int i = 0; i < article.getArticleType1Size(); i++){
+            if (article.getArticleType1(i).equals("Paper in progress")){
                 counter++;
             }
         }
@@ -49,8 +44,8 @@ public class choice_5 {
 
     public int Regular(){
         int counter = 0;
-        for (int i = 0; i < sumType2Articles.size(); i++){
-            if (sumType2Articles.get(i).equals("Regular")){
+        for (int i = 0; i < article.getArticleType2Size(); i++){
+            if (article.getArticleType2(i).equals("Regular")){
                 counter++;
             }
         }
@@ -59,12 +54,11 @@ public class choice_5 {
 
     public int caseStudy(){
         int counter = 0;
-        for (int i = 0; i < sumType2Articles.size(); i++){
-            if (sumType2Articles.get(i).equals("Case Study")){
+        for (int i = 0; i < article.getArticleType2Size(); i++){
+            if (article.getArticleType2(i).equals("Case Study")){
                 counter++;
             }
         }
         return counter;
     }
-
 }
