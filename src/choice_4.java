@@ -50,10 +50,10 @@ public class choice_4 {
                                                         
                                                         
                                 """, article.getArticleTitle(isValid),
-                        article3.getRatingContribution(isValid),
-                        article3.getRatingResult(isValid),
-                        article3.getRatingMethodology(isValid),
-                        article3.getRatingInnovation(isValid)
+                        article3.getRatingContribution(i),
+                        article3.getRatingResult(i),
+                        article3.getRatingMethodology(i),
+                        article3.getRatingInnovation(i)
                 );
                 return;
             }

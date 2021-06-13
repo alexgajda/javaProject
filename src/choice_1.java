@@ -396,7 +396,8 @@ public class choice_1 {
         return email.matches(regex);
     }
 
-    //get the ArrayStrings that helps us with the other choices
+
+    //getters
     public String getAuthorName(int i) {
         return authorName.get(i);
     }
